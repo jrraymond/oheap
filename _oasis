@@ -1,0 +1,30 @@
+OASISFormat: 0.4
+Name:        oheap
+Version:     0.1
+Synopsis:    Heap data structure
+Authors:     Justin Raymond
+License:     GPL-2.0
+
+Flag tests
+  Description: "enable tests"
+  Default: true
+
+Library "Heap"
+  Path:       src
+  BuildTools: ocamlbuild
+  Modules:    Heap, Ord
+  CompiledObject: best
+  
+Executable test
+  Path:       test
+  BuildTools: ocamlbuild
+  MainIs:     test.ml
+  BuildDepends: Heap
+  Install: false
+  Build$: flag(tests)
+  CompiledObject: best
+
+Test main
+  Command: $test
+  TestTools: test
+  CompiledObject: best
